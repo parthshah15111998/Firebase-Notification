@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Firebase Notification</string>
+    <string name="token">Token</string>
+</resources>
