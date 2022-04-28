@@ -15,7 +15,7 @@ import com.google.firebase.messaging.RemoteMessage
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
-    private val TAG = String::class.java.simpleName
+/*    private val TAG = String::class.java.simpleName
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         Log.d(TAG, "From: ${remoteMessage.from}")
@@ -34,7 +34,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         }
     }
 
-    @SuppressLint("UnspecifiedImmutableFlag")
     private fun sendNotification(messageBody: String?) {
         val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -57,5 +56,32 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             notificationManager.createNotificationChannel(channel)
         }
         notificationManager.notify(0, notificationBuilder.build())
+    }*/
+
+    override fun onNewToken(token: String) {
+        super.onNewToken(token)
+        Log.d("TOKEN",token)
+    }
+
+    override fun onMessageReceived(remoteMessage: RemoteMessage) {
+        super.onMessageReceived(remoteMessage)
+        if (remoteMessage.notification != null){
+            showNotification(remoteMessage.notification!!.title,remoteMessage.notification!!.body)
+        }
+    }
+
+    private fun showNotification(title:String?, body:String?){
+
+        val sound=RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val notification=NotificationCompat.Builder(this)
+            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setContentTitle(title)
+            .setContentText(body)
+            .setAutoCancel(true)
+
+        val notificationManager=getSystemService(Context.NOTIFICATION_SERVICE)
+        as NotificationManager
+
+        notificationManager.notify(0,notification.build())
     }
 }
