@@ -15,7 +15,7 @@ import com.google.firebase.messaging.RemoteMessage
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
-/*    private val TAG = String::class.java.simpleName
+    private val TAG = String::class.java.simpleName
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         Log.d(TAG, "From: ${remoteMessage.from}")
@@ -56,9 +56,9 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             notificationManager.createNotificationChannel(channel)
         }
         notificationManager.notify(0, notificationBuilder.build())
-    }*/
+    }
 
-    override fun onNewToken(token: String) {
+/*    override fun onNewToken(token: String) {
         super.onNewToken(token)
         Log.d("TOKEN",token)
     }
@@ -83,5 +83,5 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         as NotificationManager
 
         notificationManager.notify(0,notification.build())
-    }
+    }*/
 }
